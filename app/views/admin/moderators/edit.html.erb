@@ -1,0 +1,34 @@
+<h1>Edit Moderator</h1>
+
+<% if @moderator.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@moderator.errors.count, "error") %> prohibited this moderator from being saved:</h2>
+ 
+    <ul>
+    <% @moderator.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for [:admin, @moderator] do |f|%>
+	<p>
+		<%= f.label :fullname %>
+		<%= f.text_field :fullname%>
+	</p>
+
+	<p>
+		<%= f.label :username %>
+		<%= f.text_field :username%>
+	</p>
+
+	<p>
+		<%= f.label :password %>
+		<%= f.password_field :password%>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>

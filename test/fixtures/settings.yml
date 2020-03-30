@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  site_name: MyString
+  post_per_page: 1
+  under_maintenance: false
+  prevent_commenting: false
+  tag_visibility: false
+
+two:
+  site_name: MyString
+  post_per_page: 1
+  under_maintenance: false
+  prevent_commenting: false
+  tag_visibility: false
