@@ -26,15 +26,7 @@
         <button type="button"> Edit</button>
         <%end%>
 
-        <%if tag.in_use? %>
-          <%= link_to '#' do %>
-            <button type="button"> Delete</button>
-          <%end%>
-        <% else %>
-          <%= link_to admin_tag_path(tag), method: :delete do %>
-            <button type="button"> Delete</button>
-          <%end%>
-        <%end%>
+        <%= create_delateble_button tag %>
 
 
       </td>

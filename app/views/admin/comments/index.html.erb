@@ -1,0 +1,34 @@
+<h1>Admin::Comments#index</h1>
+
+
+<p>
+	<%= form_tag(admin_comments_url, method: :get) do %>
+	<%= text_field_tag :search %>
+	<%= submit_tag 'Search' %>
+	<% end %>
+</p>
+
+
+<p>
+	<%= link_to 'Approve', admin_comments_path(status: true) %>
+	<%= link_to 'Un-approve' ,admin_comments_path(status: false) %>
+</p>
+
+<%= @comments.each do |comment| %>
+<p><b><%= comment.visitor.fullname %></b>posted message on <b><%= comment.post.title %></b></p>
+<p><%= comment.message%></p>
+<p><%= link_to 'Delete', admin_comment_path(comment) , method: :delete, data: {confirm: 'Are you sure?'} %></p>
+<p>
+	<%=
+		if params[:status]== 'true'
+			link_to 'Un-approve', admin_comment_path(comment,status: false), method: :put
+		else
+			link_to 'Approve', admin_comment_path(comment,status: true), method: :put
+
+		end 
+		%>
+</p>
+<hr>
+<%end%>
+
+
