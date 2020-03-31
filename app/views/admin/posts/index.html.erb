@@ -3,6 +3,13 @@
 	<%= link_to 'New Post', new_admin_post_path %>
 </p>
 
+<p>
+	<%= form_tag(admin_posts_url, method: :get) do %>
+	<%= text_field_tag :search %>
+	<%= submit_tag 'Search' %>
+	<% end %>
+</p>
+
 <table>
 	<thead>
 		<tr>
