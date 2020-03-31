@@ -1,0 +1,45 @@
+<h1>Admin::Tags#new</h1>
+
+<%= form_for [:admin, @tag] do |f| %>
+  <p><%= f.text_area :name, placeholder: 'eg Ruby,Python,php' %></p>
+  <p><%= f.submit %></p>
+  <%end%>
+
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>status</th>
+      <th>created</th>
+      <th>action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@tags.each do |tag|%>
+    <tr>
+      <td><%= tag.name %></td>
+      <td><%= status_converter(tag.in_use?,truthy: 'In Use', falsey: 'Not Use') %></td>
+      <td><%= time_ago tag.created_at %></td>
+      <td>
+
+        <%= link_to edit_admin_tag_path(tag) do %>
+        <button type="button"> Edit</button>
+        <%end%>
+
+        <%if tag.in_use? %>
+          <%= link_to '#' do %>
+            <button type="button"> Delete</button>
+          <%end%>
+        <% else %>
+          <%= link_to admin_tag_path(tag), method: :delete do %>
+            <button type="button"> Delete</button>
+          <%end%>
+        <%end%>
+
+
+      </td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+
