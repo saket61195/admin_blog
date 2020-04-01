@@ -1,13 +1,12 @@
 <h1>Admin::Posts#index</h1>
 <p>
 	<%= link_to 'New Post', new_admin_post_path %>
+
+	
 </p>
 
 <p>
-	<%= form_tag(admin_posts_url, method: :get) do %>
-	<%= text_field_tag :search %>
-	<%= submit_tag 'Search' %>
-	<% end %>
+	<%= render 'search', route:admin_posts_path %>
 </p>
 
 <table>

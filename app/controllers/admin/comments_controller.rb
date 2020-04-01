@@ -1,9 +1,9 @@
 class Admin::CommentsController < Admin::ApplicationController
   def index
   	if params[:search].present?
-			@comments = Comment.joins(:visitor).where("fullname LIKE ? OR message LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")  	
+		@comments = Comment.matching_full_name_or_message(params[:search]).page params[:page]
   	else
-  	@comments = Comment.where(status: to_bool(params[:status]))
+  	@comments = Comment.where(status: to_bool(params[:status])).page params[:page]
   	end
   end
 

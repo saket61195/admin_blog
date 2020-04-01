@@ -1,0 +1,35 @@
+<h1>Admin::Messages#index</h1>
+
+
+<p>
+	<%= render 'search', route:admin_messages_path %>
+</p>
+
+
+<% @messages.each do |message| %>
+
+<% message.status == false ? weight = 'font-weight:bold' : weight = 'font-weight:normal' %>
+<p style= <%= "#{weight}"%>>
+	<%= message.visitor.fullname%><br>
+	<%= truncate(message.content, length: 60, seprator: '')%><br>
+	<%= status_converter(message.status,truthy: 'Read', falsey: 'Unread')%><br>
+	<%= time_ago message.created_at%><br>
+	
+</p>
+<p>
+	<%= link_to 'Delete' , admin_message_path(message), method: :delete, data: {confirm: 'Are you sure'} %>
+	<%= link_to 'show' , admin_message_path(message) %>
+</p>
+
+<p>
+	<%=
+			if message.status == true
+				link_to 'Unread', admin_message_path(message,status: false),method: :put
+			else
+				link_to 'Read', admin_message_path(message,status: true),method: :put
+			end
+	%>
+</p>
+<hr>
+<%end%>
+<% paginate @messages %>
