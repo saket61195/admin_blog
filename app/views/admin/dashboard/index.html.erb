@@ -1,0 +1,73 @@
+<h1>Dashboard</h1>
+
+<h2>Post</h2>
+<%= link_to 'create new post' , new_admin_post_path %><br>
+<%= link_to 'list' , admin_posts_path %>
+
+
+<table>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Replies</th>
+			<th>Date</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<%@posts.each do |post| %>
+		<tr>
+			<td><%= truncate(post.title, length:40, seprator: '') %></td>
+			<td><%= post.comments.count %></td>
+			<td><%= time_ago post.created_at %></td>
+			<td>
+					<%= link_to 'edit', edit_admin_post_path(post) %>
+					<%= link_to 'show', admin_post_path(post) %>
+					<%= link_to 'delete', admin_post_path(post), method: :delete , data: {confirm: 'Are you sure'} %>
+					
+				</td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>
+
+
+<h2>Comments</h2>
+<%= link_to 'list all cooments', admin_comments_path %>
+
+<% @comments.each do |comment| %>
+
+	<p> <%= comment.visitor.fullname %></p>
+	<p> <%= truncate(comment.message, length:125, seprator: '') %></p>
+	<p> <%= time_ago comment.created_at %>
+	<hr>
+<%end%>
+
+<h2>Visitors</h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Fullanme</th>
+			<th>Email</th>
+			<th>Created</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<% @visitors.each do |visitor,|%>
+		<tr>
+			<td><%= %></td>
+			<td><%= visitor.fullname%></td>
+			<td><%= visitor.email%></td>
+			<td><%= time_ago visitor.created_at%></td>
+			<td>
+				
+			</td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>

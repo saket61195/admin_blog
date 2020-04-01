@@ -1,6 +1,9 @@
 <h1>Admin::Notifiactions#index</h1>
 
-
+<%= if Notification.any?
+	link_to 'Dismiss All', dismiss_all_notification_path, method: :delete
+		end
+%>
 <% @visitor_notifications.each do |notify| %>
 <p>
 	<%= "#{notify.notifiable.fullname } added as new visitor #{time_ago notify.created_at}" %>
@@ -13,7 +16,7 @@
 	<% @comment_notifications.each do |notify| %>
 
 <p>
-	<%= "#{notify.notifiable.message } was added  #{time_ago notify.created_at}" %>
+	<%= "#{notify.notifiable.visitor.fullname } was added a comment  #{time_ago notify.created_at}" %>
 	<%= link_to "Dismiss", admin_notifiaction_path(notify) , method: :delete , data: {format: 'are you sure'} %>
 </p>
 
