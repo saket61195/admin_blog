@@ -14,6 +14,11 @@
     <%if flash[:alert]%>
     <div><%= flash[:alert]%></div>
     <% end %>
+
+    <p>
+      <%= link_to Setting.first.site_name , posts_path %>
+      <%= link_to 'Post', posts_path %>
+    </p>
 <%= yield %>
 
 </body>

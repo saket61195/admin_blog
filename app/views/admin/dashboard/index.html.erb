@@ -58,14 +58,15 @@
 	</thead>
 	<tbody>
 
-		<% @visitors.each do |visitor,|%>
+		<% @visitors.each_with_index do |visitor,index|%>
 		<tr>
-			<td><%= %></td>
+			<td><%= index +1 %></td>
 			<td><%= visitor.fullname%></td>
 			<td><%= visitor.email%></td>
 			<td><%= time_ago visitor.created_at%></td>
+			
 			<td>
-				
+					<%= link_to 'delete', admin_visitor_path(visitor), method: :delete, data:{confirm: 'Are you sure'} %>
 			</td>
 		</tr>
 		<%end%>

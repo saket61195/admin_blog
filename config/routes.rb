@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-
+  root to: 'posts#index'
 get '/login' => 'admin/sessions#new'
 get '/logout' => 'admin/sessions#destroy'
   namespace :admin do
+    resources :settings, only: [:new,:create,:edit,:update]
     resources :dashboard, only: [:index]
     resources :notifiactions, only: [:index,:destroy]
     resources :messages, only: [:index,:show,:update,:destroy]
@@ -14,4 +15,6 @@ get '/logout' => 'admin/sessions#destroy'
     resources :moderators, only: [:index,:edit,:update]
   end
   match 'dismiss_all_notification', to: 'admin/notifiactions#delete_all', via: :delete
+  resources :posts, only: [:index,:show]
+  resources :messages, only: [:new,:create]
 end
