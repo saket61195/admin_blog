@@ -35,4 +35,10 @@ moderator = Moderator.create(
 		status:[true,false].sample,
 		visitor: visitor)
 
+	notifiable = [visitor,comment].sample
+
+	notification = Notification.create(
+		notifiable_id: notifiable.id,
+		notifiable_type: notifiable.class.name) # class.name which means either visitor or comment
+
 end

@@ -1,0 +1,21 @@
+<h1>Admin::Notifiactions#index</h1>
+
+
+<% @visitor_notifications.each do |notify| %>
+<p>
+	<%= "#{notify.notifiable.fullname } added as new visitor #{time_ago notify.created_at}" %>
+	<%= link_to "Dismiss", admin_notifiaction_path(notify) , method: :delete , data: {format: 'are you sure'} %>
+</p>
+<%end%>
+
+<hr>
+
+	<% @comment_notifications.each do |notify| %>
+
+<p>
+	<%= "#{notify.notifiable.message } was added  #{time_ago notify.created_at}" %>
+	<%= link_to "Dismiss", admin_notifiaction_path(notify) , method: :delete , data: {format: 'are you sure'} %>
+</p>
+
+
+<%end%>
