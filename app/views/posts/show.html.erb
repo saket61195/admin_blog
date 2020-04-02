@@ -19,7 +19,23 @@
 <hr>
 </p>
 
+
+
+
 <%= form_for @visitor_comment, url:comments_url do |f| %>
+
+<% if session[:visitor_errors] %>
+  <div id="error_explanation">
+    <h2><%= pluralize(session[:visitor_errors].count, "error") %> prohibited a successfull saved:</h2>
+ 
+    <ul>
+    <% session[:visitor_errors].each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <p>
 	<%= f.label :fullname%>
 <%= f.text_field :fullname%>

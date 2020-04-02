@@ -11,4 +11,11 @@ class Comment < ActiveRecord::Base
   def self.matching_full_name_or_message params
   	joins(:visitor).where("fullname LIKE ? OR message LIKE ?", "%#{params}%", "%#{params}%") 
   end
+
+  after_save :notify
+
+	def notify
+		notifications.build.save
+	end
+
 end
