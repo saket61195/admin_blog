@@ -11,7 +11,7 @@
 	<%= link_to 'Un-approve' ,admin_comments_path(status: false) %>
 </p>
 
-<%= @comments.each do |comment| %>
+<% @comments.each do |comment| %>
 <p><b><%= comment.visitor.fullname %></b>posted message on <b><%= comment.post.title %></b></p>
 <p><%= comment.message%></p>
 

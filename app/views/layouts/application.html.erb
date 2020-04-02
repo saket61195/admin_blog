@@ -16,8 +16,11 @@
     <% end %>
 
     <p>
-      <%= link_to Setting.first.site_name , posts_path %>
+      <%= link_to Setting.site_name , posts_path %>
       <%= link_to 'Post', posts_path %>
+      <%= link_to 'About', '#' %>
+      <%= link_to 'Contant', new_message_path %>
+       <%= link_to 'Login', login_path %>
     </p>
 <%= yield %>
 
